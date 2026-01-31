@@ -29,5 +29,15 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+
+    /* Ensures all interactive elements meet the accessibility standard on mobile */
+  @layer base {
+  button,
+  input,
+  select,
+  textarea {
+    @apply min-h-[44px] min-w-[44px];
+  }
+}
   }
 }

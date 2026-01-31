@@ -19,9 +19,12 @@ const data = [
 
 export default function SkillRadar() {
   return (
-    <div className="h-full w-full"> {/* I removed "min-h-[300px]" here */}
+    /* We use aspect-square or a fixed height to ensure the container
+      is never 0 pixels tall, which stops the Recharts error.
+    */
+    <div className="w-full h-80 aspect-square flex items-center justify-center mx-auto">
       <ResponsiveContainer width="100%" height="100%">
-        <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+        <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data}>
           <PolarGrid stroke="#334155" />
           <PolarAngleAxis
             dataKey="subject"

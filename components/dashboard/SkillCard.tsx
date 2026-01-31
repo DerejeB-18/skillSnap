@@ -1,3 +1,5 @@
+"use client"
+
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { CheckCircle2, Award, Zap, BookOpen } from "lucide-react"
@@ -11,7 +13,7 @@ interface SkillCardProps {
 }
 
 export default function SkillCard({ name, level, years, progress, isVerified }: SkillCardProps) {
-  // Map levels to specific icons and colors
+  // KEEPING YOUR CONFIG: This is the best part of your code
   const levelConfig = {
     Beginner: { icon: <BookOpen className="w-3 h-3" />, color: "bg-blue-500/10 text-blue-500" },
     Intermediate: { icon: <Zap className="w-3 h-3" />, color: "bg-emerald-500/10 text-emerald-500" },
@@ -26,15 +28,23 @@ export default function SkillCard({ name, level, years, progress, isVerified }: 
         <div className="space-y-1">
           <h3 className="font-bold text-lg flex items-center gap-2">
             {name}
-            {isVerified && <CheckCircle2 className="w-4 h-4 text-primary" />}
+            {/* ENHANCED: Only show CheckCircle if verified */}
+            {isVerified && <CheckCircle2 className="w-4 h-4 text-emerald-500" />}
           </h3>
           <p className="text-xs text-muted-foreground">{years} Years Experience</p>
         </div>
         
-        <Badge className={`flex items-center gap-1 border-none ${color}`}>
-          {icon}
-          {level}
-        </Badge>
+        <div className="flex flex-col items-end gap-2">
+            <Badge className={`flex items-center gap-1 border-none shadow-none ${color}`}>
+            {icon}
+            {level}
+            </Badge>
+            {isVerified && (
+                <span className="text-[10px] font-bold text-emerald-500/80 uppercase tracking-widest flex items-center gap-1">
+                    Verified
+                </span>
+            )}
+        </div>
       </div>
 
       <div className="mt-6 space-y-3">
@@ -42,6 +52,7 @@ export default function SkillCard({ name, level, years, progress, isVerified }: 
           <span className="text-muted-foreground uppercase tracking-wider">Proficiency</span>
           <span>{progress}%</span>
         </div>
+        {/* Using the UI Progress component for a smoother look */}
         <Progress value={progress} className="h-2 bg-secondary" />
       </div>
     </div>

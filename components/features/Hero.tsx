@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react" // Added this import
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Terminal } from "lucide-react"
@@ -21,9 +22,23 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 bg-gradient-to-br from-foreground to-muted-foreground bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent"
+            style={{
+              backgroundImage: "linear-gradient(135deg, var(--foreground) 0%, var(--muted-foreground) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            } as React.CSSProperties} // This 'as React.CSSProperties' kills the warning
+          >
             Level Up Your <br />
-            <span className="bg-gradient-to-r from-blue-500 to-emerald-500 bg-clip-text text-transparent">Tech Stack</span>
+            <span className="bg-clip-text text-transparent font-bold"
+              style={{
+                backgroundImage: "linear-gradient(90deg, #3b82f6 0%, #10b981 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              } as React.CSSProperties} // Same here
+            >
+              Tech Stack
+            </span>
           </h1>
 
           {/* Description */}
@@ -47,7 +62,10 @@ export default function Hero() {
       </div>
 
       {/* Decorative Gradient Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-blue-500/20 blur-[120px] rounded-full -z-10 pointer-events-none" />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[40vh] max-w-4xl bg-blue-500/20 blur-[100px] rounded-full -z-10 pointer-events-none"
+        aria-hidden="true"
+      />
     </section>
   )
 }
