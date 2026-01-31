@@ -1,28 +1,33 @@
 @import "tailwindcss";
-@import "tw-animate-css"; /* Ensure you have this package installed */
+@import "tw-animate-css";
 
 @theme {
-  /* Adding your Day 1 Color Strategy variables */
+  /* 1. Define your base theme variables here */
   --color-background: #f8f8f8;
   --color-foreground: #121212;
 
   /* Accent: Blue-green gradient colors */
-  --color-accent-start: #3b82f6; /* Blue */
-  --color-accent-end: #10b981;   /* Green */
-
-  /* Dark mode overrides */
-  --variant-dark {
-    --color-background: #121212;
-    --color-foreground: #f8f8f8;
-  }
+  --color-accent-start: #3b82f6;
+  --color-accent-end: #10b981;
+  
+  /* Required for shadcn components like borders */
+  --color-border: color-mix(in srgb, var(--color-foreground) 15%, transparent);
 }
 
-/* Base resets for a clean start */
+/* 2. Define Dark Mode variants OUTSIDE the @theme block */
+@variant dark (&:where(.dark, .dark *));
+
+.dark {
+  --color-background: #121212;
+  --color-foreground: #f8f8f8;
+}
+
+/* 3. Base styles */
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
 }
